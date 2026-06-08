@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>意义之路 | 幸福福祉练习室</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="回到首页">
+        <span class="brand-mark">意</span>
+        <span>
+          <strong>意义之路</strong>
+          <small>幸福福祉练习室 MVP</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#home">路径</a>
+        <a href="#participant">参与者</a>
+        <a href="#meaning">意义</a>
+        <a href="#practice">练习</a>
+        <a href="#journal">日志</a>
+        <a href="#declaration">宣言</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="section intro-section">
+        <div class="intro-copy">
+          <p class="eyebrow">10 条幸福路径</p>
+          <h1>从意义之路开始，练习一种更稳定的幸福。</h1>
+          <p class="lead">
+            这里把 Tal Ben-Shahar 沙哈尔教授幸福学中的福祉理念，转成一个可以每天使用的练习网页。
+            第一版先聚焦“意义福祉”：价值、方向、连接、贡献与一致。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#practice">开始 21 天练习</a>
+            <a class="secondary-action" href="#meaning">先了解意义福祉</a>
+          </div>
+        </div>
+        <aside class="progress-panel" aria-label="练习进度">
+          <span class="panel-label">当前进度</span>
+          <strong id="progressCount">0 / 21</strong>
+          <div class="progress-track">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+          <p id="progressNote">今天可以从 Day 1 开始，给意义感一个很小但真实的入口。</p>
+        </aside>
+      </section>
+
+      <section class="section path-section" aria-labelledby="pathTitle">
+        <div class="section-heading">
+          <p class="eyebrow">幸福地图</p>
+          <h2 id="pathTitle">10 条路径</h2>
+        </div>
+        <div id="pathGrid" class="path-grid"></div>
+      </section>
+
+      <section id="participant" class="section participant-section">
+        <div class="section-heading">
+          <p class="eyebrow">参与者信息</p>
+          <h2>先登记昵称，再开始 21 天练习</h2>
+          <p>昵称会作为导出数据的最外层 key。姓名是辅助信息，便于你后续整理和核对。</p>
+        </div>
+        <div class="participant-layout">
+          <form id="participantForm" class="participant-form">
+            <label>
+              <span>昵称</span>
+              <input id="nicknameInput" type="text" placeholder="例如：晨光、安安、Mia" />
+            </label>
+            <label>
+              <span>姓名</span>
+              <input id="nameInput" type="text" placeholder="例如：张三，可选但推荐填写" />
+            </label>
+          </form>
+          <aside class="export-panel">
+            <span class="panel-label">数据导出</span>
+            <h3>一键导出 21 天数据</h3>
+            <p>会导出当前浏览器中的练习记录、宣言内容和参与者信息，格式为 JSON，昵称优先作为 key。</p>
+            <div class="hero-actions">
+              <button id="exportData" class="primary-action" type="button">导出当前用户数据</button>
+            </div>
+            <p id="exportStatus" class="export-status">建议先填写昵称，再开始记录，这样后续整理会更顺手。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="meaning" class="section meaning-section">
+        <div class="section-heading">
+          <p class="eyebrow">意义福祉</p>
+          <h2>把生活重新接回价值</h2>
+          <p>
+            意义之路不是寻找一个遥不可及的人生使命，而是让每天的行动、关系和选择，与自己珍视的价值重新连接。
+          </p>
+        </div>
+        <div class="meaning-layout">
+          <article class="meaning-copy">
+            <h3>沙哈尔幸福学中的位置</h3>
+            <p>
+              在 SPIRE 框架中，意义福祉最接近 Spiritual wellbeing。这里的 spiritual 不一定指宗教，
+              更接近目的感、价值感、方向感、超越自我，以及与更大整体相连接。
+            </p>
+            <h3>偏离意义的信号</h3>
+            <ul class="check-list">
+              <li>明明很忙，却不知道自己在忙什么。</li>
+              <li>完成了很多任务，却没有“值得”的感觉。</li>
+              <li>经常被外界评价推动，很少问自己真正重视什么。</li>
+              <li>空下来会慌，因为一停下就感觉和自己失联。</li>
+            </ul>
+          </article>
+          <div class="pillars" aria-label="意义感的五个组成">
+            <div>
+              <span>01</span>
+              <strong>价值感</strong>
+              <p>知道自己重视什么，也知道不愿意丢掉什么。</p>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>方向感</strong>
+              <p>不一定已经抵达，但知道大致往哪里走。</p>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>连接感</strong>
+              <p>感到自己与他人、家庭、社会、自然或信念有连接。</p>
+            </div>
+            <div>
+              <span>04</span>
+              <strong>贡献感</strong>
+              <p>自己的行动对他人、关系或世界有正向影响。</p>
+            </div>
+            <div>
+              <span>05</span>
+              <strong>一致感</strong>
+              <p>外在做的事与内心相信的事逐渐对齐。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="practice" class="section practice-section">
+        <div class="section-heading">
+          <p class="eyebrow">每日练习</p>
+          <h2>21 天意义福祉练习</h2>
+          <p>每天只完成一个小任务。输入会自动保存，完成后会出现在你的意义日志里。</p>
+        </div>
+        <div class="practice-shell">
+          <aside class="day-picker" aria-label="选择练习天数">
+            <div class="day-picker-head">
+              <span>选择日期</span>
+              <button id="nextOpenDay" class="icon-button" type="button" title="跳到下一天">↳</button>
+            </div>
+            <div id="dayButtons" class="day-buttons"></div>
+          </aside>
+
+          <article class="practice-card">
+            <div class="practice-meta">
+              <span id="dayBadge">Day 1</span>
+              <span id="weekBadge">第 1 周：看见意义</span>
+            </div>
+            <h3 id="dayTitle">写下你最重视的 10 个价值词</h3>
+            <p id="dayPrompt"></p>
+            <div id="valueLibrarySection" class="value-library" hidden>
+              <div class="value-library-head">
+                <strong>价值词参考</strong>
+                <span>点击词语可以加入上方文本框</span>
+              </div>
+              <div id="valueChipList" class="value-chip-list"></div>
+            </div>
+
+            <form id="practiceForm" class="practice-form">
+              <label>
+                <span>今天我最想服务的价值是</span>
+                <textarea id="valueInput" rows="4" placeholder="例如：真实、成长、爱、贡献、稳定。也可以直接点击上方价值词加入。"></textarea>
+              </label>
+              <label>
+                <span>今天最有意义的一件小事是</span>
+                <textarea id="momentInput" rows="4" placeholder="写一件很小但让你觉得值得的事"></textarea>
+              </label>
+              <label>
+                <span>明天我愿意继续靠近的方向是</span>
+                <textarea id="directionInput" rows="3" placeholder="一个最小、真实、可以做到的行动"></textarea>
+              </label>
+              <div class="form-actions">
+                <button id="completeDay" class="primary-action" type="button">完成今天</button>
+                <button id="clearDay" class="text-button" type="button">清空当天</button>
+              </div>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <section id="journal" class="section journal-section">
+        <div class="section-heading">
+          <p class="eyebrow">我的记录</p>
+          <h2>意义日志</h2>
+          <p>这里会汇总你完成过的每日练习。慢慢看见自己，其实就是很温柔的进步。</p>
+        </div>
+        <div id="journalList" class="journal-list"></div>
+      </section>
+
+      <section id="declaration" class="section declaration-section">
+        <div class="section-heading">
+          <p class="eyebrow">收束练习</p>
+          <h2>意义福祉宣言</h2>
+          <p>当你完成一段练习后，用几句话把自己的方向写下来。它不需要完美，只需要真实。</p>
+        </div>
+        <div class="declaration-layout">
+          <form id="declarationForm" class="declaration-form">
+            <label>
+              <span>我的核心价值是</span>
+              <textarea id="coreValues" rows="3"></textarea>
+            </label>
+            <label>
+              <span>我希望自己成为一个怎样的人</span>
+              <textarea id="personIWantToBe" rows="3"></textarea>
+            </label>
+            <label>
+              <span>我想服务的人、事或方向是</span>
+              <textarea id="serviceDirection" rows="3"></textarea>
+            </label>
+            <label>
+              <span>为了活出意义，我愿意坚持的 3 件小事</span>
+              <textarea id="keepDoing" rows="4"></textarea>
+            </label>
+            <label>
+              <span>为了不再偏离自己，我准备减少的 3 件事</span>
+              <textarea id="reduceDoing" rows="4"></textarea>
+            </label>
+          </form>
+          <aside class="declaration-preview">
+            <span class="panel-label">我的宣言</span>
+            <h3 id="previewTitle">意义不是想明白，而是慢慢活一致。</h3>
+            <p id="previewBody">填写左侧内容后，这里会生成你的意义福祉宣言预览。</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>内容原型基于“幸福福祉”资料整理。第一版数据只保存在当前浏览器。</p>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
