@@ -1,0 +1,7 @@
+interface:
+  display_name: "Commit Code"
+  short_description: "Commit safely and keep README docs in sync."
+  default_prompt: "Use $commit-code to inspect the repo, update README.md and README_CN.md if the feature changes project-facing behavior, stage only the intended changes, write a clean commit, and push if requested."
+
+policy:
+  allow_implicit_invocation: true

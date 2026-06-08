@@ -15,6 +15,7 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 - 浏览器本地自动保存进度
 - 一键导出 JSON 数据，便于后续汇总和分析
 - 一套中文 Markdown 福祉资料，覆盖 10 条幸福路径
+- 一个仓库内可复用的 Codex 提交代码 Skill
 
 ## 当前 MVP 能做什么
 
@@ -35,6 +36,11 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 ├── README.md
 ├── README_CN.md
 ├── LICENSE
+├── skills/
+│   └── commit-code/
+│       ├── SKILL.md
+│       └── agents/
+│           └── openai.yaml
 ├── web/
 │   ├── index.html
 │   ├── styles.css
@@ -109,6 +115,18 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 - 感恩之路
 
 整体内容参考 Tal Ben-Shahar 的幸福学方向，并尽量和更广义的 `SPIRE` 福祉模型保持对齐。
+
+## Skills
+
+仓库里现在已经加入了一个本地 Codex Skill：`skills/commit-code/`。
+
+这个 Skill 用来规范“提交代码”类工作流，重点包括：
+
+- 提交前检查 git 状态
+- 只暂存本次功能范围内的改动
+- 当功能影响项目使用方式时，同步更新 `README.md` 和 `README_CN.md`
+- 生成清晰的提交信息
+- 在用户要求时安全推送到远程仓库
 
 ## 后续可以继续做的事
 

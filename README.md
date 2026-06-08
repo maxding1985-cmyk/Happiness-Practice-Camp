@@ -15,6 +15,7 @@ This project currently includes:
 - Local progress saving in the browser
 - One-click JSON export for later data collection and analysis
 - A set of Chinese Markdown materials for the 10 happiness paths
+- A repository-local Codex skill for safe code submission workflows
 
 ## Current MVP
 
@@ -35,6 +36,11 @@ The current web MVP includes:
 ├── README.md
 ├── README_CN.md
 ├── LICENSE
+├── skills/
+│   └── commit-code/
+│       ├── SKILL.md
+│       └── agents/
+│           └── openai.yaml
 ├── web/
 │   ├── index.html
 │   ├── styles.css
@@ -109,6 +115,18 @@ The Chinese content in `幸福福祉/` is organized around 10 happiness paths:
 - 感恩之路
 
 The framing is inspired by Tal Ben-Shahar's happiness studies and aligned where possible with the broader `SPIRE` wellbeing model.
+
+## Skills
+
+The repository now includes a local Codex skill under `skills/commit-code/`.
+
+This skill is designed for code submission workflows and helps:
+
+- inspect git state before committing
+- stage only in-scope changes
+- keep `README.md` and `README_CN.md` in sync when features change project-facing behavior
+- create clean commit messages
+- push safely when requested
 
 ## Next Steps
 
