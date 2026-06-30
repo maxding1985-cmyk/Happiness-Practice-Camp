@@ -4,13 +4,13 @@
 
 Happiness Practice Camp is a lightweight practice project inspired by Tal Ben-Shahar's happiness studies, adapted into a practical Chinese reflection and training experience.
 
-The current MVP focuses on one path first: `意义之路` (the path of meaning). Instead of only presenting theory, it turns the material into a small web-based practice space that people can actually use day by day.
+The current MVP opens two practice paths: `意义之路` (the path of meaning) and `正念之路` (the path of mindfulness). Instead of only presenting theory, it turns the material into a small web-based practice space that people can actually use day by day.
 
 ## Overview
 
 This project currently includes:
 
-- A static web MVP for the 21-day meaning practice flow
+- A static web MVP for 21-day meaning and mindfulness practice flows
 - A required participant `name` field
 - Local progress saving in the browser
 - One-click JSON export for later data collection and analysis
@@ -21,11 +21,11 @@ This project currently includes:
 
 The current web MVP includes:
 
-- A 10-path overview page
-- A focused introduction to `意义福祉`
-- A 21-day daily practice flow
-- A personal journal view
-- A meaning declaration section
+- A 10-path overview page with switchable open paths
+- Focused introductions to `意义福祉` and `正念之路`
+- 21-day daily practice flows for both meaning and mindfulness
+- Path-specific personal journal views
+- Meaning and mindfulness declaration sections
 - A participant info section for later data organization
 - Exportable JSON data using `name` as the top-level key
 
@@ -44,7 +44,8 @@ The current web MVP includes:
 ├── web/
 │   ├── index.html
 │   ├── styles.css
-│   └── app.js
+│   ├── app.js
+│   └── zhengnian-hero.png
 └── 幸福福祉/
     ├── README.md
     ├── 01-意义之路.md
@@ -65,8 +66,9 @@ This version is intentionally simple. No build step is required.
 
 1. Open `web/index.html`
 2. Fill in `姓名`
-3. Start the 21-day meaning practice
-4. Use the export button to download one participant's data as JSON
+3. Choose `意义之路` or `正念之路`
+4. Start the selected 21-day practice
+5. Use the export button to download one participant's data as JSON
 
 Locally, you can open `web/index.html` directly in a browser.
 
@@ -76,7 +78,7 @@ The export format is designed to make later processing easier.
 
 - `name` is used as both the top-level key and profile field
 - Export checks that a name has been entered before downloading JSON
-- Practice entries, declaration content, and progress are exported together
+- Practice entries, declaration content, and progress for all open paths are exported together
 
 Example shape:
 
@@ -87,13 +89,24 @@ Example shape:
       "name": "Zhang San"
     },
     "progress": {
-      "completedDays": 3,
-      "totalDays": 21,
-      "selectedDay": 4,
-      "exportedAt": "2026-06-08T00:00:00.000Z"
+      "meaning": {
+        "completedDays": 3,
+        "totalDays": 21
+      },
+      "mindfulness": {
+        "completedDays": 1,
+        "totalDays": 21
+      }
     },
-    "entries": {},
-    "declaration": {}
+    "entries": {
+      "meaning": {},
+      "mindfulness": {}
+    },
+    "declarations": {
+      "meaning": {},
+      "mindfulness": {}
+    },
+    "exportedAt": "2026-06-30T00:00:00.000Z"
   }
 }
 ```
@@ -131,5 +144,5 @@ This skill is designed for code submission workflows and helps:
 
 - Add categorized value-word groups for easier selection
 - Add a batch import and merge tool for multiple participant JSON files
-- Expand the web experience from `意义之路` to the other 9 paths
+- Expand the web experience from `意义之路` and `正念之路` to the other 8 paths
 - Improve product copy and onboarding flow

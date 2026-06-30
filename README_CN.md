@@ -4,13 +4,13 @@
 
 Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出来的轻量实践项目，目标不是只讲理论，而是把幸福福祉做成一个可以每天真正使用的练习体验。
 
-当前 MVP 先聚焦一条主线：`意义之路`。我们把意义福祉相关内容转成网页化的 21 天练习流程，方便个人练习，也方便后续做营地式数据收集与整理。
+当前 MVP 已开放两条主线：`意义之路` 和 `正念之路`。我们把意义福祉与正念福祉相关内容转成网页化的 21 天练习流程，方便个人练习，也方便后续做营地式数据收集与整理。
 
 ## 项目概览
 
 当前项目包含：
 
-- 一个静态网页 MVP，用于 21 天意义福祉练习
+- 一个静态网页 MVP，用于 21 天意义福祉与正念福祉练习
 - 参与者的必填 `姓名` 字段
 - 浏览器本地自动保存进度
 - 一键导出 JSON 数据，便于后续汇总和分析
@@ -21,11 +21,11 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 
 当前网页版本包括：
 
-- 10 条幸福路径总览
-- `意义福祉` 的聚焦介绍
-- 21 天每日练习流程
-- 个人意义日志
-- 意义福祉宣言区域
+- 10 条幸福路径总览，并支持已开放路径切换
+- `意义福祉` 与 `正念之路` 的聚焦介绍
+- 意义与正念各自的 21 天每日练习流程
+- 按路径切换的个人日志
+- 意义福祉与正念福祉宣言区域
 - 参与者信息登记
 - 以 `姓名` 为 key 的 JSON 导出
 
@@ -44,7 +44,8 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 ├── web/
 │   ├── index.html
 │   ├── styles.css
-│   └── app.js
+│   ├── app.js
+│   └── zhengnian-hero.png
 └── 幸福福祉/
     ├── README.md
     ├── 01-意义之路.md
@@ -65,8 +66,9 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 
 1. 打开 `web/index.html`
 2. 填写 `姓名`
-3. 开始 21 天意义之路练习
-4. 点击导出按钮，下载当前参与者的 JSON 数据
+3. 选择 `意义之路` 或 `正念之路`
+4. 开始对应路径的 21 天练习
+5. 点击导出按钮，下载当前参与者的 JSON 数据
 
 在本地环境中，直接用浏览器打开 `web/index.html` 即可。
 
@@ -76,7 +78,7 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 
 - `name` 会作为最外层 key 和参与者字段一起导出
 - 导出前会检查是否已填写姓名
-- 每日练习记录、宣言内容和当前进度会一起导出
+- 已开放路径的每日练习记录、宣言内容和当前进度会一起导出
 
 示例结构：
 
@@ -87,13 +89,24 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
       "name": "张三"
     },
     "progress": {
-      "completedDays": 3,
-      "totalDays": 21,
-      "selectedDay": 4,
-      "exportedAt": "2026-06-08T00:00:00.000Z"
+      "meaning": {
+        "completedDays": 3,
+        "totalDays": 21
+      },
+      "mindfulness": {
+        "completedDays": 1,
+        "totalDays": 21
+      }
     },
-    "entries": {},
-    "declaration": {}
+    "entries": {
+      "meaning": {},
+      "mindfulness": {}
+    },
+    "declarations": {
+      "meaning": {},
+      "mindfulness": {}
+    },
+    "exportedAt": "2026-06-30T00:00:00.000Z"
   }
 }
 ```
@@ -131,5 +144,5 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 
 - 把价值词库做成分类筛选
 - 增加多个参与者 JSON 的批量导入与汇总工具
-- 从 `意义之路` 扩展到其余 9 条路径
+- 从 `意义之路`、`正念之路` 扩展到其余 8 条路径
 - 继续完善产品文案和首次使用引导
