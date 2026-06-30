@@ -11,7 +11,7 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 当前项目包含：
 
 - 一个静态网页 MVP，用于 21 天意义福祉练习
-- 参与者的 `昵称` 和 `姓名` 字段
+- 参与者的必填 `姓名` 字段
 - 浏览器本地自动保存进度
 - 一键导出 JSON 数据，便于后续汇总和分析
 - 一套中文 Markdown 福祉资料，覆盖 10 条幸福路径
@@ -27,7 +27,7 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 - 个人意义日志
 - 意义福祉宣言区域
 - 参与者信息登记
-- 以 `昵称` 为优先 key 的 JSON 导出
+- 以 `姓名` 为 key 的 JSON 导出
 
 ## 项目结构
 
@@ -64,7 +64,7 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 这个版本刻意保持简单，不需要安装依赖，也不需要构建。
 
 1. 打开 `web/index.html`
-2. 填写 `昵称` 和 `姓名`
+2. 填写 `姓名`
 3. 开始 21 天意义之路练习
 4. 点击导出按钮，下载当前参与者的 JSON 数据
 
@@ -74,17 +74,16 @@ Happiness Practice Camp 是一个围绕 Tal Ben-Shahar 幸福学理念整理出�
 
 导出格式是为后续整理数据而设计的：
 
-- 有昵称时，优先使用 `nickname` 作为最外层 key
-- `name` 会作为辅助字段一起导出
+- `name` 会作为最外层 key 和参与者字段一起导出
+- 导出前会检查是否已填写姓名
 - 每日练习记录、宣言内容和当前进度会一起导出
 
 示例结构：
 
 ```json
 {
-  "晨光": {
+  "张三": {
     "profile": {
-      "nickname": "晨光",
       "name": "张三"
     },
     "progress": {

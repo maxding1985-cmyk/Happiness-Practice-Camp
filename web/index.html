@@ -60,28 +60,24 @@
       <section id="participant" class="section participant-section">
         <div class="section-heading">
           <p class="eyebrow">参与者信息</p>
-          <h2>先登记昵称，再开始 21 天练习</h2>
-          <p>昵称会作为导出数据的最外层 key。姓名是辅助信息，便于你后续整理和核对。</p>
+          <h2>先填写姓名，再开始 21 天练习</h2>
+          <p>姓名会作为导出数据的最外层 key，便于你后续整理和核对。</p>
         </div>
         <div class="participant-layout">
           <form id="participantForm" class="participant-form">
             <label>
-              <span>昵称</span>
-              <input id="nicknameInput" type="text" placeholder="例如：晨光、安安、Mia" />
-            </label>
-            <label>
               <span>姓名</span>
-              <input id="nameInput" type="text" placeholder="例如：张三，可选但推荐填写" />
+              <input id="nameInput" type="text" required placeholder="例如：张三" />
             </label>
           </form>
           <aside class="export-panel">
             <span class="panel-label">数据导出</span>
             <h3>一键导出 21 天数据</h3>
-            <p>会导出当前浏览器中的练习记录、宣言内容和参与者信息，格式为 JSON，昵称优先作为 key。</p>
+            <p>会导出当前浏览器中的练习记录、宣言内容和参与者姓名，格式为 JSON，姓名会作为 key。</p>
             <div class="hero-actions">
               <button id="exportData" class="primary-action" type="button">导出当前用户数据</button>
             </div>
-            <p id="exportStatus" class="export-status">建议先填写昵称，再开始记录，这样后续整理会更顺手。</p>
+            <p id="exportStatus" class="export-status">请先填写姓名，再开始记录和导出。</p>
           </aside>
         </div>
       </section>

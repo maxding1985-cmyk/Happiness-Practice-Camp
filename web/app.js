@@ -124,7 +124,6 @@ const dayPlans = [
 const defaultState = {
   selectedDay: 1,
   participant: {
-    nickname: "",
     name: "",
   },
   entries: {},
@@ -142,7 +141,6 @@ let state = loadState();
 const elements = {
   pathGrid: document.querySelector("#pathGrid"),
   participantFields: {
-    nickname: document.querySelector("#nicknameInput"),
     name: document.querySelector("#nameInput"),
   },
   exportData: document.querySelector("#exportData"),
@@ -178,7 +176,21 @@ const elements = {
 function loadState() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    return saved ? { ...defaultState, ...saved } : structuredClone(defaultState);
+    if (!saved) {
+      return structuredClone(defaultState);
+    }
+
+    return {
+      ...defaultState,
+      ...saved,
+      participant: {
+        name: saved.participant?.name || saved.participant?.nickname || "",
+      },
+      declaration: {
+        ...defaultState.declaration,
+        ...saved.declaration,
+      },
+    };
   } catch {
     return structuredClone(defaultState);
   }
@@ -327,16 +339,20 @@ function completedDays() {
   return Object.values(state.entries).filter((entry) => entry.completed).length;
 }
 
+function participantName() {
+  return state.participant.name.trim();
+}
+
 function renderProgress() {
   const count = completedDays();
   const nextDay = firstOpenDay();
-  const nickname = state.participant.nickname || state.participant.name;
+  const name = participantName();
   elements.progressCount.textContent = `${count} / 21`;
   elements.progressBar.style.width = `${(count / 21) * 100}%`;
   elements.progressNote.textContent =
     count === 21
-      ? `${nickname ? `${nickname} 已经` : "你已经"}完成 21 天练习，可以去写下自己的意义福祉宣言。`
-      : `${nickname ? `${nickname} 的` : ""}下一步可以继续 Day ${nextDay}，让意义感一点点落到生活里。`;
+      ? `${name ? `${name} 已经` : "你已经"}完成 21 天练习，可以去写下自己的意义福祉宣言。`
+      : `${name ? `${name} 的` : ""}下一步可以继续 Day ${nextDay}，让意义感一点点落到生活里。`;
 }
 
 function firstOpenDay() {
@@ -431,13 +447,18 @@ function exportParticipantData() {
   persistDeclaration();
   persistParticipant();
 
-  const nickname = state.participant.nickname.trim();
-  const name = state.participant.name.trim();
-  const key = nickname || name || "未命名用户";
+  const name = participantName();
+  if (!name) {
+    elements.exportStatus.textContent = "请先填写姓名，再导出 21 天练习数据。";
+    elements.participantFields.name.focus();
+    document.querySelector("#participant").scrollIntoView({ behavior: "smooth" });
+    return;
+  }
+
+  const key = name;
   const payload = {
     [key]: {
       profile: {
-        nickname,
         name,
       },
       progress: {
@@ -454,7 +475,7 @@ function exportParticipantData() {
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
-  const filenameBase = sanitizeFileName(key || "meaning-data");
+  const filenameBase = sanitizeFileName(key);
   link.href = url;
   link.download = `${filenameBase}-21days.json`;
   document.body.appendChild(link);
@@ -462,9 +483,7 @@ function exportParticipantData() {
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
 
-  elements.exportStatus.textContent = nickname
-    ? `已导出 ${key} 的 21 天数据，最外层 key 使用昵称。`
-    : `已导出 ${key} 的 21 天数据。当前未填写昵称，已用姓名或默认名称作为 key。`;
+  elements.exportStatus.textContent = `已导出 ${key} 的 21 天数据，最外层 key 使用姓名。`;
 }
 
 function sanitizeFileName(value) {
@@ -472,17 +491,12 @@ function sanitizeFileName(value) {
 }
 
 function updateExportStatus() {
-  const nickname = state.participant.nickname.trim();
-  const name = state.participant.name.trim();
-  if (nickname) {
-    elements.exportStatus.textContent = `当前导出 key：${nickname}。姓名会作为辅助字段一起导出。`;
-    return;
-  }
+  const name = participantName();
   if (name) {
-    elements.exportStatus.textContent = `当前还没填昵称，导出时会先用姓名 ${name} 作为 key。`;
+    elements.exportStatus.textContent = `当前导出 key：${name}。`;
     return;
   }
-  elements.exportStatus.textContent = "建议先填写昵称，再开始记录，这样后续整理会更顺手。";
+  elements.exportStatus.textContent = "请先填写姓名，再开始记录和导出。";
 }
 
 function bindEvents() {
